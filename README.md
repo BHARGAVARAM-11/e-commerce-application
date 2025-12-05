@@ -59,7 +59,7 @@ You should see output like:
 **5. Open the application**
 ```
 http://localhost:portnumber 0000/
-
+```
 - Browse products
 - Add items to the cart
 - Click “View Cart” to see selected items
