@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body { background: #f5f7fc; }
+        .product-img { width: 100px; height: 80px; object-fit: cover; border-radius: 5px; }
+        .header-title { font-size: 35px; font-weight: bold; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="header-title">
+    🛒 My Cart
+    <a href="/" class="btn btn-dark" style="float:right; margin-right:20px;">🏠 Continue Shopping</a>
+</div>
+
+<div class="container mt-4">
+    {% if cart_items %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img src="{{ item.image }}" class="product-img"></td>
+                <td>{{ item.name }}</td>
+                <td>₹ {{ item.price }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                <td><strong>₹ {{ total }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/clear_cart" class="btn btn-danger">Clear Cart</a>
+    {% else %}
+    <h3 class="text-center mt-5">Your cart is empty!</h3>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

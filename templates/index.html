@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My E-Commerce Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <style>
+        body { background: #f5f7fc; }
+        .product-card {
+            border-radius: 15px;
+            padding: 18px;
+            background: #fff;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .price { color: green; font-weight: 700; font-size: 20px; }
+        .header-title { font-size: 35px; font-weight: bold; text-align: center; margin-top: 20px; }
+        .cart-btn { float: right; margin-right: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">
+        🛒 My E-Commerce Store
+        <a href="/cart" class="btn btn-dark cart-btn">🛍 View Cart</a>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            {% for product in products %}
+            <div class="col-md-3 mb-4">
+                <div class="product-card">
+
+                    <!-- Real image URL (no static folder needed!) -->
+                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
+
+                    <h4 class="text-center">{{ product.name }}</h4>
+                    <p class="text-center price">₹ {{ product.price }}</p>
+
+                    <div class="text-center">
+                        <a href="/add_to_cart/{{ product.id }}" class="btn btn-primary">Add to Cart</a>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>
+</html>
+
