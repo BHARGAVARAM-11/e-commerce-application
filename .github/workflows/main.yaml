@@ -14,19 +14,6 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      # ---- FAIL FAST IF SECRET IS MISSING ----
-      - name: Validate Docker Hub secrets
-        run: |
-          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
-            echo " DOCKERHUB_USERNAME secret is missing"
-            exit 1
-          fi
-          if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
-            echo " DOCKERHUB_TOKEN secret is missing"
-            exit 1
-          fi
-          echo " Docker Hub secrets are present"
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -38,30 +25,24 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce
-          IMAGE_TAG=${{ github.sha }}
-          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$IMAGE_TAG .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce:latest .
 
       - name: Push Docker image
         run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce
-          IMAGE_TAG=${{ github.sha }}
-          docker push $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:$IMAGE_TAG
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce:latest
 
+      
       - name: Run container
         run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce
-          IMAGE_TAG=${{ github.sha }}
-          docker run -d -p 8080:5000 --name test-container $IMAGE_NAME:$IMAGE_TAG
+          docker run -d -p 8080:5000 --name test-container \
+          ${{ secrets.DOCKERHUB_USERNAME }}/flask-ecommerce:latest
           sleep 5
 
       - name: Verify application
         run: |
-          curl -f http://localhost:8080
+          curl http://localhost:8080
 
       - name: Cleanup container
-        if: always()
         run: |
-          docker stop test-container || true
-          docker rm test-container || true
+          docker stop test-container
+          docker rm test-container
