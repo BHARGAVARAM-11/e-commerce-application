@@ -139,4 +139,19 @@ flowchart TB
 
 ```
 
+```mermaid
+
+flowchart LR
+    U[End User<br/>(Browser)]
+    
+    U -->|HTTP Request| F[Flask Web Application]
+    
+    F --> R[Flask Routes<br/>(app.py)]
+    R --> T[Jinja2 Templates<br/>(HTML + Bootstrap)]
+    R --> S[Session Management<br/>(Cart)]
+    R --> D[(SQLite Database<br/>Products)]
+    
+    T --> U
+```
+
 
