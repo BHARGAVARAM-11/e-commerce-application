@@ -99,6 +99,26 @@ After the container starts, access the application at:
 http://localhost:5000
 ```
 
+## Workflow Trigger
+The pipeline runs automatically on:
+
+- Push to main branch
+- Pull request creation
+
+## CI Pipeline Steps
+
+- Checkout source code
+- Login to Docker Hub using GitHub Secrets
+- Build Docker image from Dockerfile
+- Tag image (latest + commit SHA)
+- Push image to Docker Hub repository
+
+## GitHub Actions Workflow File
+
+## Path:
+```
+.github/workflows/docker-build-push.yml
+```
 ## Architecture
 
 ```mermaid
