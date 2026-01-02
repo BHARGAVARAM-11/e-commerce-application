@@ -26,6 +26,10 @@ myecommerce-app/
 │   ├── index.html      # Home page showing products
 │   ├── cart.html       # Cart page showing selected items
 │   └── checkout.html   # Checkout page (optional)
+|Dockerfile
+|Dockercompose.yaml
+|.github/workflows
+  |main.yaml
 ├── venv/               # Python virtual environment
 └── README.md           # This file
 ```
@@ -68,6 +72,32 @@ http://localhost:portnumber 0000/
 - Product images are loaded via external URLs from Unsplash.
 - Cart functionality uses Flask sessions, so cart data persists per browser session.
 - To add more products, edit the products list in app.py.
+
+
+### Run with docker
+
+## Build image
+```
+docker build -t flask-ecommerce .
+
+```
+## Run container
+```
+docker run -p 5000:5000 flask-ecommerce
+```
+
+### Run Application Using Docker Compose
+Docker Compose allows you to run the entire application using a single command.
+
+## Start the Application
+```
+docker-compose up --build
+```
+After the container starts, access the application at:
+
+```
+http://localhost:5000
+```
 
 ## Architecture
 
