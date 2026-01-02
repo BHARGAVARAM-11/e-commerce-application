@@ -26,10 +26,10 @@ myecommerce-app/
 │   ├── index.html      # Home page showing products
 │   ├── cart.html       # Cart page showing selected items
 │   └── checkout.html   # Checkout page (optional)
-|Dockerfile
-|Dockercompose.yaml
-|.github/workflows
-  |main.yaml
+├── Dockerfile
+├── Dockercompose.yaml
+├── .github/workflows
+    ├── main.yaml
 ├── venv/               # Python virtual environment
 └── README.md           # This file
 ```
