@@ -33,8 +33,8 @@ myecommerce-app/
 ├── venv/               # Python virtual environment
 └── README.md           # This file
 ```
-**Setup Instructions**
-**1. Clone the repository **
+***Setup Instructions***
+** 1.  Clone the repository **
 ```
 git clone <your-repo-url>
 cd myecommerce-app
