@@ -69,5 +69,22 @@ http://localhost:portnumber 0000/
 - Cart functionality uses Flask sessions, so cart data persists per browser session.
 - To add more products, edit the products list in app.py.
 
+## Architecture
+
+```mermaid
+flowchart TB
+    U[End User<br/>(Browser)]
+    F[Flask Web Server<br/>(app.py / routes & views)<br/><br/>• Product Listing<br/>• Cart Actions<br/>• Checkout Views]
+    A[Application Logic Layer<br/>(Flask Business Logic)<br/><br/>• Add to Cart<br/>• Session Handling<br/>• Redirect / Render HTML]
+    D[Data Layer<br/>(SQLite - products.db)<br/><br/>• Product Info<br/>• Cart via Sessions]
+    I[Deployment / Infrastructure<br/><br/>• Dockerfile<br/>• docker-compose<br/>• GitHub Actions CI/CD<br/>• Docker Hub Registry]
+
+    U -->|HTTP Requests| F
+    F -->|Route Handling| A
+    A -->|Read / Write| D
+    D -->|Data Response| A
+    A -->|HTML Response| F
+    F -->|HTTP Response| U
+    F --> I
 
 
