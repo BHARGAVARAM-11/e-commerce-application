@@ -138,22 +138,7 @@ flowchart TB
     F -->|Containerized & Deployed via| I
 ```
 
-```mermaid
-flowchart LR
-    U[End User Browser]
-    F[Flask Web Application]
-    R[Flask Routes]
-    T[Jinja2 Templates]
-    S[Session Management]
-    D[(SQLite Database)]
 
-    U --> F
-    F --> R
-    R --> T
-    R --> S
-    R --> D
-    T --> U
-```
 
 
 
