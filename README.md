@@ -73,11 +73,11 @@ http://localhost:portnumber 0000/
 
 ```mermaid
 flowchart TB
-    U[End User<br/>(Browser)]
-    F[Flask Web Server<br/>(app.py / routes & views)<br/><br/>• Product Listing<br/>• Cart Actions<br/>• Checkout Views]
-    A[Application Logic Layer<br/>(Flask Business Logic)<br/><br/>• Add to Cart<br/>• Session Handling<br/>• Redirect / Render HTML]
-    D[Data Layer<br/>(SQLite - products.db)<br/><br/>• Product Info<br/>• Cart via Sessions]
-    I[Deployment / Infrastructure<br/><br/>• Dockerfile<br/>• docker-compose<br/>• GitHub Actions CI/CD<br/>• Docker Hub Registry]
+    U["End User\n(Browser)"]
+    F["Flask Web Server\n(app.py / routes & views)\n\n• Product Listing\n• Cart Actions\n• Checkout Views"]
+    A["Application Logic Layer\n(Flask Business Logic)\n\n• Add to Cart\n• Session Handling\n• Render HTML / Redirect"]
+    D["Data Layer\n(SQLite - products.db)\n\n• Product Information\n• Cart via Sessions"]
+    I["Deployment / Infrastructure\n\n• Dockerfile\n• docker-compose\n• GitHub Actions CI/CD\n• Docker Hub"]
 
     U -->|HTTP Requests| F
     F -->|Route Handling| A
@@ -85,7 +85,8 @@ flowchart TB
     D -->|Data Response| A
     A -->|HTML Response| F
     F -->|HTTP Response| U
-    F --> I
+    F -->|Containerized & Deployed via| I
+
 ```
 
 
